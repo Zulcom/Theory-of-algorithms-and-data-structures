@@ -1,6 +1,7 @@
 ﻿#include <iostream> // ввод-вывод
 #include <climits> // максимальные инты
 #include <algorithm> // интросорт
+#include <ctime>
 
 /*
 	Задание: 11.В имеющейся последовательности чисел найти три минимальных элемента.
@@ -17,7 +18,9 @@ void withoutArray(int N) {
 	int min0 = INT_MAX, min1 = INT_MAX, min2 = INT_MAX;
 	int currentNumber;
 	for (int i = 1; i < N + 1; i++){
-		std::cout << "Enter number " << i << ": ";std::cin >> currentNumber;
+		//std::cout << "Enter number " << i << ": ";std::cin >> currentNumber;
+		currentNumber = rand() % 100;
+		std::cout << currentNumber << " ";
 		if (noneq(currentNumber, min0, min1, min2)) continue;
 		if (currentNumber < min0) min0 = currentNumber;
 		else if (currentNumber < min1) min1 = currentNumber;
@@ -32,7 +35,8 @@ void withoutArray(int N) {
 int* fillArray(int N) {
 	int* resultArray = new int[N];
 	for (int i = 0; i < N; i++){
-		std::cout << "Enter number " << i + 1 << ": ";std::cin >> resultArray[i];
+		//std::cout << "Enter number " << i + 1 << ": ";std::cin >> resultArray[i];
+		resultArray[i] = rand()%100;
 	}
 	return resultArray;
 }
@@ -85,12 +89,13 @@ void bubblesort(int* array, int N) {
 }
 
 int main() {
-	int N = 0, menuSelector;
+	srand(time(0));
+	int N = 5000, menuSelector;
 	while(true){
 		std::cout << "Select function:" << std::endl;
 		std::cout << "1. o(n)" << std::endl << "2. O(n logn)" << std::endl << "3.O(n*n)" << std::endl << "4. exit" << std::endl;
 		std::cin >> menuSelector;
-		if(menuSelector != 4){ std::cout << "Input sequence length: ";std::cin >> N; }
+		//if(menuSelector != 4){ std::cout << "Input sequence length: ";std::cin >> N; }
 		switch(menuSelector){
 			case 1:{
 				withoutArray(N);
@@ -105,7 +110,6 @@ int main() {
 			case 3:{
 				int* array = fillArray(N);
 				bubblesort(array, N);
-				delete[] array;
 				break;
 			}
 			case 4:{
