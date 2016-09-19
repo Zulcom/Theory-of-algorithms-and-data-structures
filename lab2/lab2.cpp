@@ -38,6 +38,7 @@ int main() {
 	cout << endl;
 	copy(myList.begin(), myList.end(), ostream_iterator<int>(cout, " "));
 	cout << endl;
+	delete[] array;
 	system("pause.exe");
 	return 0;
 }
