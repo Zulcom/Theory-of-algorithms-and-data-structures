@@ -58,40 +58,7 @@ string findBin(string *array, int n, string myStr)
 	return "no";
 }
 
-string findInter(string *array, int n, string myStr)
-{
-	if(array[0] == myStr) return array[1];
-	if(array[n - 1] == myStr) return array[n - 2];
 
-	int index,
-		l, r;
-	string str = array[0];
-	for(int i = 0; i < n; ++i)
-	{
-		if(array[i].length() == myStr.length())
-		{
-			l = i;
-			break;
-		}
-	}
-	for(int i = n - 1; i > 0; --i)
-	{
-		if(array[i].length() == myStr.length())
-		{
-			r = i;
-			break;
-		}
-	}
-
-	while(array[l] <= myStr && array[r] >= myStr)
-	{
-		index = l + ((myStr[0] - array[l][0])*(r - l)) / (array[r][0] - array[l][0]);
-		if(array[index] == myStr) return array[index - 1];
-		if(array[index]<myStr) l = index;
-		else if(array[index]>myStr) r = index;
-	}
-	return "no";
-}
 
 int main()
 {
@@ -134,11 +101,6 @@ int main()
 	if(findStrBin == "no")
 		cout << "Данного элемента не существует." << endl << endl;
 	cout << "Двоичный поиск: " << findStrBin << endl << endl;
-
-	findStrInter = findInter(arrStr, n, myStr);
-	if(findStrBin == "no")
-		cout << "Данного элемента не существует." << endl << endl;
-	cout << "Интерполирующий поиск: " << findStrInter << endl << endl;
 
 	system("pause");
 	return 0;
