@@ -68,20 +68,21 @@ void sortMerge(int* buf, int l, int r)
 
 int main()
 {
-	int n;
-	cout << "Enter numbers amunt: ";cin >> n;
-	cout << "Generated number array: " << endl;
+	int n=50;
+	//cout << "Enter numbers amunt: ";cin >> n;
+	//cout << "Generated number array: " << endl;
 	int* arr = new int[n];
 	srand(time(0)); // initialize random generator
 	for(int i = 0; i < n; ++i){
 		arr[i] = rand() % 20 - 10;
-		cout << arr[i] << " ";
+		//cout << arr[i] << " ";
 	}
-	int choice = 0;
-	while(choice <1 || choice >3){
+	int choice = 3;
+	/*while(choice <1 || choice >3){
 		cout << "\nChoice sort alogithm:\n1.Stupid sort\n2.Merge sort\n3.Quick sort\n";
 		cin >> choice;
-	}
+	}*/
+	system("pause.exe");
 	switch (choice){
 		case 1: 
 		sortStupid(arr, n);
@@ -95,7 +96,8 @@ int main()
 		sortQuick(arr, 0, n - 1);
 		break;
 	}
-
+	system("pause.exe");
+	return 0;
 	cout << "Sorted array: \n";
 	for(int i = 0; i < n; ++i)
 		cout << arr[i] << " ";
