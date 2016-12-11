@@ -1,4 +1,4 @@
-#include "BinMinHeap.h"
+ï»¿#include "BinMinHeap.h"
 #include "iostream"
 BinMinHeap::BinMinHeap(int* array, int length): _vector(length)
 {
@@ -110,11 +110,11 @@ void BinMinHeap::Display() {
 }
 vector<int> BinMinHeap::extractLevel(int level) {
 	vector<int> levelElements;
-	int amont = pow(2, level); // êîëè÷åñòâî íà óðîâíå x
-	int first = pow(2, level) - 1; // ñàìûé ëåâûé íà óðîâíå x
+	int amont = pow(2, level); // ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð½Ð° ÑƒÑ€Ð¾Ð²Ð½Ðµ x
+	int first = pow(2, level) - 1; // ÑÐ°Ð¼Ñ‹Ð¹ Ð»ÐµÐ²Ñ‹Ð¹ Ð½Ð° ÑƒÑ€Ð¾Ð²Ð½Ðµ x
 	int last = first + amont > _vector.size() ? _vector.size() : first + amont;
 	for (int i = first;i<last;++i)
-		levelElements.push_back(_vector[i]); // çàïîìèíàåì ýëåìåíòû ñ óðîâíÿ
+		levelElements.push_back(_vector[i]); // Ð·Ð°Ð¿Ð¾Ð¼Ð¸Ð½Ð°ÐµÐ¼ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹ Ñ ÑƒÑ€Ð¾Ð²Ð½Ñ
 	_vector.erase(_vector.begin()+first,_vector.begin()+last);
 	this->Heapify();
 	return levelElements;

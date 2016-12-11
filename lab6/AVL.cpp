@@ -6,7 +6,7 @@
 
 using namespace std;
 
-struct node // структура для представления узлов дерева
+struct node // СЃС‚СЂСѓРєС‚СѓСЂР° РґР»СЏ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ СѓР·Р»РѕРІ РґРµСЂРµРІР°
 {
 	int key;
 	int height;
@@ -32,7 +32,7 @@ void fixHeight(node* p)
 	p->height = (heightLeft > heightRight ? heightLeft : heightRight) + 1;
 }
 
-node* rotateRight(node* p) // правый поворот вокруг p
+node* rotateRight(node* p) // РїСЂР°РІС‹Р№ РїРѕРІРѕСЂРѕС‚ РІРѕРєСЂСѓРі p
 {
 	node* q = p->left;
 	p->left = q->right;
@@ -42,7 +42,7 @@ node* rotateRight(node* p) // правый поворот вокруг p
 	return q;
 }
 
-node* rotateLeft(node* q) // левый поворот вокруг q
+node* rotateLeft(node* q) // Р»РµРІС‹Р№ РїРѕРІРѕСЂРѕС‚ РІРѕРєСЂСѓРі q
 {
 	node* p = q->right;
 	q->right = p->left;
@@ -52,7 +52,7 @@ node* rotateLeft(node* q) // левый поворот вокруг q
 	return p;
 }
 
-node* balance(node* p) // балансировка узла p
+node* balance(node* p) // Р±Р°Р»Р°РЅСЃРёСЂРѕРІРєР° СѓР·Р»Р° p
 {
 	fixHeight(p);
 	if(mustBalanced(p) == 2)
@@ -67,10 +67,10 @@ node* balance(node* p) // балансировка узла p
 			p->left = rotateLeft(p->left);
 		return rotateRight(p);
 	}
-	return p; // балансировка не нужна
+	return p; // Р±Р°Р»Р°РЅСЃРёСЂРѕРІРєР° РЅРµ РЅСѓР¶РЅР°
 }
 
-node* insert(node* p, int k) // вставка ключа k в дерево с корнем p
+node* insert(node* p, int k) // РІСЃС‚Р°РІРєР° РєР»СЋС‡Р° k РІ РґРµСЂРµРІРѕ СЃ РєРѕСЂРЅРµРј p
 {
 	if(!p) return new node(k);
 	if(k<p->key)
@@ -133,24 +133,24 @@ int main()
 	setlocale(LC_ALL, "rus");
 
 	int n;
-	cout << "Введите количество узлов дерева: ";
+	cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СѓР·Р»РѕРІ РґРµСЂРµРІР°: ";
 	cin >> n;
 
 	node *root = NULL;
 	//int k;
-	cout << "Введите значения ключей:\n";
+	cout << "Р’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёСЏ РєР»СЋС‡РµР№:\n";
 	for(int i = 0; i < n; ++i)
 	{
 	//	cin >> k;
 		root = insert(root, rand()%10);
 	}
 
-	cout << "Построенное дерево:\n";
+	cout << "РџРѕСЃС‚СЂРѕРµРЅРЅРѕРµ РґРµСЂРµРІРѕ:\n";
 	printTree(root, 0);
 	cout << endl;
 
 	int num;
-	cout << "Введите номер уровня: ";
+	cout << "Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ СѓСЂРѕРІРЅСЏ: ";
 	cin >> num;
 
 	queue<int> nodes, nodeslvl;
@@ -164,19 +164,19 @@ int main()
 		nodeslvl.pop();
 	}
 
-	root = cleantree(root, 1, num); // очищаем дерево с заданного уровня
+	root = cleantree(root, 1, num); // РѕС‡РёС‰Р°РµРј РґРµСЂРµРІРѕ СЃ Р·Р°РґР°РЅРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ
 
 	size = nodes.size();
-	for(int i = 0; i < size; ++i) // перезаписываем первоначальное дерево
+	for(int i = 0; i < size; ++i) // РїРµСЂРµР·Р°РїРёСЃС‹РІР°РµРј РїРµСЂРІРѕРЅР°С‡Р°Р»СЊРЅРѕРµ РґРµСЂРµРІРѕ
 	{
 		root = insert(root, nodes.front());
 		nodes.pop();
 	}
 
-	cout << "\nОбновлённое первое дерево:\n";
+	cout << "\nРћР±РЅРѕРІР»С‘РЅРЅРѕРµ РїРµСЂРІРѕРµ РґРµСЂРµРІРѕ:\n";
 	printTree(root, 0);
 
-	cout << "\n\nВторое дерево с элементами с заданного уровня первого дерева:\n";
+	cout << "\n\nР’С‚РѕСЂРѕРµ РґРµСЂРµРІРѕ СЃ СЌР»РµРјРµРЅС‚Р°РјРё СЃ Р·Р°РґР°РЅРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ РїРµСЂРІРѕРіРѕ РґРµСЂРµРІР°:\n";
 	printTree(root2, 0);
 
 	system("pause.exe");
