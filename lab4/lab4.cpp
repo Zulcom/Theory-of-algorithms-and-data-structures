@@ -37,11 +37,13 @@ public:
 	bool isContains(int data);
 	int getSize()const;
 	int getKey(int data)const;
+	int findIndex(int a)const;
 	void display() const;
 
 };
 int HashTableChaining::getKey(int data)const { return abs(data % getSize()); }
 int HashTableChaining::getSize() const{ return size; }
+int HashTableChaining::findIndex(int a) const { return 1; } // заглушка чтоб компилятор не ругался
 void HashTableChaining::push(int data)
 {
 	int key = getKey(data); // определяем ключ, в который будет добавленны данные
@@ -205,8 +207,8 @@ void HashTableOpenAdressing::display()const
 
 int main()
 {
-	//HashTableChaining hash(10);
-	HashTableOpenAdressing hash(10);
+	HashTableChaining hash(10);
+	//HashTableOpenAdressing hash(10);
 	ifstream inputFile("test.txt");
 
 	int nRow, temp;
